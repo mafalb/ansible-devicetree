@@ -58,6 +58,14 @@ matrix:
             - sourceline: "ppa:ansible/ansible-2.8"
           packages:
             - ansible
+    - env:
+        - ANSIBLE_VERSION=2.9
+      addons:
+        apt:
+          sources:
+            - sourceline: "ppa:ansible/ansible-2.9"
+          packages:
+            - ansible
 
 before_install:
 
