@@ -3,8 +3,12 @@
 
 - hosts: localhost
   tasks:
-    - name: debug
-      debug: msg="{{ lookup('env', 'ANSIBLE_VERSION') }}"
+    - debug: msg="{{ lookup('env', 'ANSIBLE_VERSION') }}"
+      tags:
+        - never
+        - debug
+
+    - debug: var=ansible_version 
       tags:
         - never
         - debug
@@ -20,4 +24,5 @@
         that:
           - ansible_version.full is match(lookup('env', 'ANSIBLE_VERSION'))
         fail_msg: you are running the wrong version of ansible
+
 ...
