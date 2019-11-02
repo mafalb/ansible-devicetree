@@ -1,0 +1,23 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- hosts: localhost
+  tasks:
+    - name: debug
+      debug: msg="{{ lookup('env', 'ANSIBLE_VERSION') }}"
+      tags:
+        - never
+        - debug
+
+    - name: assert that environment variable for ansible_version is set
+      assert:
+        that:
+          - lookup('env', 'ANSIBLE_VERSION') 
+        fail_msg: The environment variable ANSIBLE_VERSION is not set appropiately
+
+    - name: check ansible_version
+      assert:
+        that:
+          - ansible_version.full is match(lookup('env', 'ANSIBLE_VERSION'))
+        fail_msg: you are running the wrong version of ansible
+...
