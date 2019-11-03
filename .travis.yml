@@ -2,7 +2,7 @@
 ---
 sudo: required
 dist: xenial
-language: minimal
+language: python
 env:
  global:
    - ANSIBLE_ROLE_NAME=mafalb.devicetree
@@ -73,6 +73,7 @@ before_install:
   - sudo -H pip install docker
 
   - sudo -H pip install ansible-lint
+  - sudo -H pip install molecule
   - echo "myself ansible_connection=local ansible_become=true" | sudo tee /etc/ansible/hosts >/dev/null
 
 script:
