@@ -38,6 +38,9 @@ before_install:
   - pip install molecule docker
   - echo "myself ansible_connection=local ansible_become=true" | sudo tee /etc/ansible/hosts >/dev/null
   - export PATH="$HOME/.local/bin:$PATH"
+  - cd ../
+  - mv ansible-role-$ROLE_NAME geerlingguy.$ROLE_NAME
+  - cd geerlingguy.$ROLE_NAME
 
 script:
   - export PATH="/root/.local/bin:$PATH"
