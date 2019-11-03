@@ -33,14 +33,14 @@ before_install:
   # the packaged python-docker in xenial does not work
   - sudo -H pip install --upgrade pyOpenSSL
   - sudo -H pip install --upgrade cryptography
-  - sudo -H pip install docker
-
-  - sudo -H pip install ansible-lint
-  - sudo -H pip install --user molecule
+  #- sudo -H pip install docker
+  #- sudo -H pip install ansible-lint
+  - pip install --user molecule docker
   - echo "myself ansible_connection=local ansible_become=true" | sudo tee /etc/ansible/hosts >/dev/null
-  - export PATH="/root/.local/bin:$PATH"
+  - export PATH="$HOME/.local/bin:$PATH"
 
 script:
+  - export PATH="/root/.local/bin:$PATH"
   - ansible-lint .
   - ansible-playbook -D tests/ansible_version.yml -t all,debug
   - cd tests
