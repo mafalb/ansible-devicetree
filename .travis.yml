@@ -78,7 +78,7 @@ before_install:
   - sudo -H pip install ansible-lint
   - sudo -H pip install --user molecule
   - echo "myself ansible_connection=local ansible_become=true" | sudo tee /etc/ansible/hosts >/dev/null
-  - export PATH=$PATH
+  - export PATH="/root/.local/bin:$PATH"
 
 script:
   - ansible-lint .
