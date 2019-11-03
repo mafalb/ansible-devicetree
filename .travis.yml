@@ -3,6 +3,7 @@
 sudo: required
 dist: xenial
 language: python
+python: 2.7
 env:
  global:
    - ANSIBLE_ROLE_NAME=mafalb.devicetree
@@ -84,6 +85,8 @@ script:
   - ansible-playbook --become -D test.yml -C -t all,debug
   - ansible-playbook --become -D test.yml    -t all,debug
   - ansible-playbook --become -D test.yml    -t all,debug | tee /tmp/idempotence.tee
+  - cd ..
+  - molecule converge
   - "! grep -E 'ok=.*changed=[^0].*unreachable=.*failed=' /tmp/idempotence.tee"
 
 ...
