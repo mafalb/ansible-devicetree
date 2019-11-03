@@ -35,7 +35,7 @@ before_install:
   - sudo -H pip install --upgrade cryptography
   #- sudo -H pip install docker
   #- sudo -H pip install ansible-lint
-  - pip install --user molecule docker
+  - pip install molecule docker
   - echo "myself ansible_connection=local ansible_become=true" | sudo tee /etc/ansible/hosts >/dev/null
   - export PATH="$HOME/.local/bin:$PATH"
 
